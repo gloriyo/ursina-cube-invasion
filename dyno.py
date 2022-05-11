@@ -31,7 +31,9 @@ def update():
         if evil_cubes[i].x > 6 or evil_cubes[i].x < -6 or evil_cubes[i].y > 6 or evil_cubes[i].y < -6:
             evil_cubes[i].setPos(random.randint(-6, 6), random.randint(-6, 6), 0)
         else:
-            evil_cubes[i].setPos(evil_cubes[i].x + random.randint(-1, 1), evil_cubes[i].y + random.randint(-1, 1), 0)
+            # evil_cubes[i].setPos(evil_cubes[i].x + random.randint(-1, 1), evil_cubes[i].y + random.randint(-1, 1), 0)
+            dir = evil_cubes[i].direction
+            evil_cubes[i].position = dir * 2
     global texoffset                            # Inform we are going to use the variable defined outside
     global texoffset2                           # Inform we are going to use the variable defined outside
     texoffset += time.dt * 0.2                  # Add a small number to this variable
@@ -84,7 +86,8 @@ for i in range(evils):
     evil_cube = Entity(model='cube', 
                     color=color.red, 
                     scale=(2,2,2), 
-                    position=(random.randint(-6, 6), random.randint(-6, 6),0),
+                    position=(random.randint(-6, 6), random.randint(-6, 6), 0),
+                    direction=(random.randint(-1, 1), random.randint(-1, 1), 0),
                     texture="waterfall", collider="box")
     evil_cubes.append(evil_cube)  
     evil_dirs.append((-1,-1, 0))
